@@ -10,3 +10,21 @@ services:
       dockerfile: ./php/DockerFile
     volumes:
       - ./app:/app
+  db:
+    image: mysql:latest
+
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+    ports:
+      - "3306:3306"
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: 2580pqwO(##)!!
+      MYSQL_USER: Nick
+      MYSQL_PASSWORD: dbpass123@
+      MYSQL_DATABASE: Practice_DB
+volumes:
+  mysqldata:

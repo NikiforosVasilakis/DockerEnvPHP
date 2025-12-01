@@ -1,11 +1,18 @@
 <?php
-// Function that returns the maximum value in an array
 function findMaxInArray($array) {
-    $max = $array[0]; // Assume the first element is the largest initially
-    foreach ($array as $value) { // Loop through each element
-        if ($value > $max) { // Update max if a larger value is found
+    $max = $array[0]; 
+    foreach ($array as $value) { 
+        if ($value > $max) { 
             $max = $value;
         }
     }
-    return $max; // Return the largest value
+    return $max;
 }
+
+$array = [3, 7, 2, 9, 4];
+
+$maxValue = findMaxInArray($array);
+
+echo "Array: [" . implode(", ", $array) . "]\n";
+echo "Maximum value in the array: $maxValue";
+?>

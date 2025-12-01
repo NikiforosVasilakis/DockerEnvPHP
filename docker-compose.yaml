@@ -4,6 +4,7 @@ services:
     ports:
       - "80:80"
     volumes:
+      - ./public/main:/app/public/main
       - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
   app:
     build:
@@ -11,20 +12,32 @@ services:
     volumes:
       - ./app:/app
   db:
-    image: mysql:latest
-
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: phpmyadmin
     volumes:
-      - mysqldata:/var/lib/mysql
-
+      - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
 
-    restart: unless-stopped
-
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 2580pqwO(##)!!
-      MYSQL_USER: Nick
-      MYSQL_PASSWORD: dbpass123@
-      MYSQL_DATABASE: Practice_DB
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+      PMA_PMADB: phpmyadmin
+      PMA_CONTROLUSER: pma
+      PMA_CONTROLPASS: pmapass
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
 volumes:
-  mysqldata:
+  db_data:

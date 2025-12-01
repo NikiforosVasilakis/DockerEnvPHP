@@ -1,0 +1,132 @@
+/* add_edit_user.css */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.header h2 {
+    margin: 0;
+    color: #007BFF;
+}
+
+.header a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header a:hover {
+    color: #0056b3;
+}
+
+/* Form Styling */
+.add-user-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-user-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.add-user-form input,
+.add-user-form select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.add-user-form input[type="file"] {
+    padding: 3px;
+}
+
+.add-user-form button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-user-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Error Message */
+.error-message {
+    color: #ff4d4d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Styling for the fieldset and legend */
+fieldset {
+    border: 1px solid #ddd; /* Light border around the fieldset */
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px;
+    background-color: #f9f9f9; /* Slightly off-white background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+legend {
+    font-size: 1.1em; /* Slightly larger font size */
+    font-weight: bold;
+    color: #007BFF; /* Blue color to match the theme */
+    padding: 0 10px; /* Add some padding around the text */
+    border: 1px solid #ddd; /* Match the fieldset border */
+    border-radius: 5px;
+    background-color: #fff; /* White background for contrast */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Fieldset and Legend */
+fieldset {
+    border: 1px solid #ccc; /* Light border */
+    padding: 15px 20px;
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 15px;
+    background-color: #f9f9f9; /* Subtle background */
+}
+
+legend {
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    padding: 0 10px;
+    background-color: #f9f9f9; /* Match fieldset background */
+    border: none;
+}
+
+/* Radio buttons */
+fieldset input[type="radio"] {
+    margin-right: 10px;
+}
+
+fieldset label {
+    margin-right: 20px;
+    font-weight: normal;
+    color: #333;
+}

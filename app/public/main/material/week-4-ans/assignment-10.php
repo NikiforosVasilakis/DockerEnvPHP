@@ -1,8 +1,14 @@
 <?php
-// Function that removes empty lines from a string
 function removeEmptyLines($text) {
-    // Split the text by newlines, filter out empty lines, and rejoin
     $lines = explode("\n", $text);
-    $nonEmptyLines = array_filter($lines, 'trim'); // Remove lines that are empty or whitespace only
-    return implode("\n", $nonEmptyLines); // Join the remaining lines
+    $nonEmptyLines = array_filter($lines, 'trim'); 
+    return implode("\n", $nonEmptyLines);
 }
+
+$text = "This is line 1.\n\nThis is line 2.\n\n\nThis is line 3.";
+
+$result = removeEmptyLines($text);
+
+echo "Original text:\n$text\n\n";
+echo "Text after removing empty lines:\n$result";
+?>

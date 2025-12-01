@@ -1,12 +1,20 @@
 <?php
-// Function that checks if a number is in the Fibonacci sequence
 function isFibonacci($number) {
-    $a = 0; // Initialize the first Fibonacci number
-    $b = 1; // Initialize the second Fibonacci number
-    while ($b < $number) { // Continue until the series reaches or exceeds the number
-        $temp = $a + $b; // Calculate the next Fibonacci number
-        $a = $b; // Update a to the next number
-        $b = $temp; // Update b to the new Fibonacci number
+    $a = 0; 
+    $b = 1; 
+    while ($b < $number) {
+        $temp = $a + $b; 
+        $a = $b; 
+        $b = $temp; 
     }
-    return $b == $number || $a == $number; // Return true if number matches Fibonacci sequence
+    return $b == $number || $a == $number; 
 }
+
+$number = 21; 
+
+if (isFibonacci($number)) {
+    echo "$number is a Fibonacci number.";
+} else {
+    echo "$number is not a Fibonacci number.";
+}
+?>

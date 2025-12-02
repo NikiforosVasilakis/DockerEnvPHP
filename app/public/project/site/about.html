@@ -1,179 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About NYU</title>
-    <link rel="stylesheet" href="styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>About — NYU</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="brand">
-                <img src="img/nyu-logo.png" alt="NYU logo" class="brand-logo">
-                <span>NYU</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="index.html#enrolment">Enrolment</a></li>
-                    <li><a href="index.html#academics">Academics</a></li>
-                    <li><a href="index.html#location">Visit</a></li>
-                    <li><a href="uni_life.html">University Life</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+	<!-- Header Navigation -->
+	<header class="header">
+		<div class="header-container">
+			<div class="logo-section">
+				<a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
+					<img src="img/nyu-logo.png" alt="NYU Logo" class="logo-icon">
+					<span class="logo-text">NEW YORK UNIVERSITY</span>
+				</a>
+			</div>
+			<nav class="main-nav">
+				<div class="nav-groups-wrapper">
+					<div class="nav-group nav-group-1">
+						<a href="about.html" class="nav-link active">About</a>
+						<a href="#research" class="nav-link">Research</a>
+						<a href="#admissions" class="nav-link">Admissions</a>
+						<a href="#news" class="nav-link">News</a>
+					</div>
+					<div class="nav-group nav-group-2">
+						<a href="#community" class="nav-link">Community</a>
+						<a href="academics.html" class="nav-link">Academics</a>
+						<a href="uni_life.html" class="nav-link">Campus Life</a>
+						<div class="search-container">
+							<input type="text" placeholder="Search..." class="search-input">
+							<button class="search-btn" aria-label="Search"></button>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<div class="header-actions">
+				<button class="login-btn">Login</button>
+			</div>
+		</div>
+	</header>
 
-    <section class="hero about-hero">
-        <div class="hero-content">
-            <p class="eyebrow">About NYU</p>
-            <h1>A global research university rooted in New York City</h1>
-            <p>Since 1831, New York University has blended world-class scholarship with the creative energy of its home city. Learn what drives our community of bold thinkers.</p>
-            <a class="cta-button" href="#mission">Our Mission</a>
-            <a class="cta-button" href="#leaders">Leadership</a>
-        </div>
-    </section>
 
-    <section class="about-overview" id="mission">
-        <div class="overview-text">
-            <h2>Mission & Vision</h2>
-            <p>NYU’s mission is to be a top-quality international center of scholarship, teaching, and research. We embrace diversity, innovation, and impact, ensuring that students, faculty, and alumni tackle the world’s biggest challenges with creativity and integrity.</p>
-            <p>Our vision prioritizes access to education, interdisciplinary collaboration, and global engagement through degree-granting campuses in New York City, Abu Dhabi, and Shanghai, plus academic centers on six continents.</p>
-        </div>
-        <div class="overview-stats">
-            <article class="overview-card">
-                <h3>60K+</h3>
-                <p>Students representing 130+ countries across undergraduate and graduate programs.</p>
-            </article>
-            <article class="overview-card">
-                <h3>11</h3>
-                <p>Schools and colleges spanning arts, sciences, engineering, business, and professional studies.</p>
-            </article>
-            <article class="overview-card">
-                <h3>#1</h3>
-                <p>Most international students in the U.S. for more than a decade running.</p>
-            </article>
-        </div>
-    </section>
 
-    <section class="connections about-connections">
-        <div class="connections-content">
-            <h2>Academic Excellence</h2>
-            <p>From Tisch School of the Arts to Tandon School of Engineering, NYU programs encourage experimentation and collaboration. Faculty are leading researchers, Pulitzer Prize winners, MacArthur Fellows, and industry pioneers.</p>
-            <ul>
-                <li>Project-based learning across labs, studios, and incubators.</li>
-                <li>Interdisciplinary majors that combine liberal arts, technology, and design.</li>
-                <li>Research partnerships with hospitals, museums, startups, and NGOs.</li>
-            </ul>
-        </div>
-        <div class="connections-image">
-            <img src="img/nyu-camp.jpg" alt="NYU campus life">
-        </div>
-    </section>
+	<!-- Page Header (hero-like) -->
+	<section class="page-header">
+		<div class="page-header-bg">
+			<img src="img/nyu-camp.jpg" alt="NYU Campus" class="page-header-img">
+			<div class="page-header-overlay">
+				<h1>A Legacy of Excellence, a Future of Possibility</h1>
+				<p>From world-renowned academics to a one-of-a-kind collegiate experience — discover what sets NYU apart.</p>
+			</div>
+		</div>
+	</section>
 
-    <section class="college-life about-highlights">
-        <div class="college-life-intro">
-            <p class="eyebrow">Campus Highlights</p>
-            <h2>What sets NYU apart</h2>
-            <p>Explore a few of the experiences that define the NYU community.</p>
-        </div>
-        <div class="college-life-gallery">
-            <article class="life-card">
-                <img src="img/s-colab.jpg" alt="Students collaborating">
-                <h3>Urban Innovation</h3>
-                <p>Students test ideas in living laboratories across the city, from finance to fashion to civic tech.</p>
-            </article>
-            <article class="life-card">
-                <img src="img/lab.jpg" alt="Research laboratory">
-                <h3>Research Power</h3>
-                <p>Access to world-class labs, supercomputing power, and mentorship accelerates discovery.</p>
-            </article>
-            <article class="life-card">
-                <img src="img/s-ab.jpg" alt="Students abroad">
-                <h3>Global Classrooms</h3>
-                <p>Study away for a semester or year at NYU sites in Florence, Accra, Berlin, Buenos Aires, and more.</p>
-            </article>
-        </div>
-    </section>
+	<!-- Why Choose Us -->
+	<section class="why-choose">
+		<div class="why-container">
+			<div class="why-content">
+				<div class="why-left">
+					<p class="why-kicker">Why Choose us</p>
+					<h2 class="why-title">Our strengths in research, education and community</h2>
+					<p class="why-lead">NYU combines rigorous scholarship, global opportunity, and a vibrant urban setting to prepare students for meaningful careers and engaged lives. We foster interdisciplinary collaboration, practical experience, and a diverse international community.</p>
+					<div style="margin-top:1rem">
+						<a class="login-btn" href="academics.html">Explore Programs</a>
+					</div>
+				</div>
 
-    <section class="life-stats about-stats" id="leaders">
-        <div class="stat-card">
-            <span class="stat-number">1831</span>
-            <p>Year NYU was founded by Albert Gallatin with a mission of public service.</p>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number">3</span>
-            <p>Degree-granting campuses in New York City, Abu Dhabi, and Shanghai.</p>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number">500K+</span>
-            <p>Alumni worldwide working in arts, science, tech, policy, and entrepreneurship.</p>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number">2.1B</span>
-            <p>Dollars in annual research expenditures across disciplines.</p>
-        </div>
-    </section>
+				<div class="why-right">
+					<div class="why-cards">
+					<div class="why-card">
+						<div class="card-num">01</div>
+						<div class="card-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+								<path d="M12 2L3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M8 10h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+						<h3>Top-Ranked Education</h3>
+						<p>Rigorous programs across disciplines, led by leading scholars and practitioners.</p>
+					</div>
 
-    <section class="support-grid about-support">
-        <article class="support-card">
-            <h3>Leadership</h3>
-            <p>NYU President Linda G. Mills and Provost Georgina Dopico lead a diverse team guiding academic strategy and student experience.</p>
-            <a href="https://www.nyu.edu/about/leadership-university-administration.html">Meet Leadership</a>
-        </article>
-        <article class="support-card">
-            <h3>Community Impact</h3>
-            <p>NYU partners with New York City schools, arts organizations, and civic groups to expand access and opportunity.</p>
-            <a href="https://www.nyu.edu/about/community-engagement.html">Community Engagement</a>
-        </article>
-        <article class="support-card">
-            <h3>Admissions & Aid</h3>
-            <p>Need-based scholarships, accelerated programs, and flexible learning pathways keep NYU within reach.</p>
-            <a href="https://www.nyu.edu/admissions.html">Admissions</a>
-        </article>
-        <article class="support-card">
-            <h3>Visit Us</h3>
-            <p>Take a guided tour of Washington Square, attend an info session, or explore virtually from anywhere.</p>
-            <a href="https://www.nyu.edu/admissions/visit">Plan a visit</a>
-        </article>
-    </section>
+					<div class="why-card">
+						<div class="card-num">02</div>
+						<div class="card-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+								<rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.2"/>
+								<path d="M7 14h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+								<path d="M7 10h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<h3>World-Class Faculty</h3>
+						<p>Learn from researchers and professionals at the forefront of their fields.</p>
+					</div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <div class="brand">
-                    <img src="img/nyu-logo.png" alt="NYU logo" class="brand-logo">
-                </div>
-                <p>Empowering bold thinkers with global resources, world-class faculty, and a campus embedded in the heart of New York City.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Visit & Contact</h3>
-                <p>70 Washington Square S<br>New York, NY 10012</p>
-                <p>Admissions: (212) 998-4500</p>
-                <p>Email: admissions@nyu.edu</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="about.html">About NYU</a></li>
-                    <li><a href="index.html#academics">Academics</a></li>
-                    <li><a href="uni_life.html">University Life</a></li>
-                    <li><a href="index.html#location">Campus Map</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 New York University. All rights reserved.</p>
-            <nav aria-label="Footer navigation">
-                <ul>
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Accessibility</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+					<div class="why-card highlight">
+						<div class="card-num">03</div>
+						<div class="card-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+								<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.2"/>
+								<path d="M19 12a7 7 0 0 0-14 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<h3>Unique Collegiate System</h3>
+						<p>A close-knit academic community within a global research university.</p>
+					</div>
+
+					<div class="why-card">
+						<div class="card-num">04</div>
+						<div class="card-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+								<path d="M12 2v20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+								<path d="M2 12h20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<h3>Global Network & Impact</h3>
+						<p>Extensive partnerships, study-abroad opportunities, and a worldwide alumni network.</p>
+					</div>
+					</div>
+
+					<div class="map-card side-map">
+						<iframe src="https://www.google.com/maps?q=New+York+University&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="NYU location map"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="footer-container">
+			<div class="footer-section">
+				<h4>Quick Links</h4>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="academics.html">Academics</a></li>
+					<li><a href="uni_life.html">Campus Life</a></li>
+					<li><a href="#admissions">Admissions</a></li>
+				</ul>
+			</div>
+			<div class="footer-section">
+				<h4>Resources</h4>
+				<ul>
+					<li><a href="#library">Library</a></li>
+					<li><a href="#careers">Careers</a></li>
+					<li><a href="#alumni">Alumni</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<div class="footer-section">
+				<h4>Connect</h4>
+				<ul>
+					<li><a href="#facebook">Facebook</a></li>
+					<li><a href="#twitter">Twitter</a></li>
+					<li><a href="#instagram">Instagram</a></li>
+					<li><a href="#linkedin">LinkedIn</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>&copy; 2025 New York University. All rights reserved.</p>
+		</div>
+	</footer>
 </body>
 </html>
 

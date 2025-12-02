@@ -36,8 +36,8 @@ CREATE TABLE registration_codes (
     FOREIGN KEY (role_id) REFERENCES user_roles(id)
 );
 
-INSERT INTO registration_codes (reg_code, role_id, expires_at)
+INSERT INTO registration_codes (reg_code, role_id)
 VALUES
-    ('STUD2025', 1, DATE_ADD(NOW(), INTERVAL 1 DAY)),
-    ('PROF2025', 2, DATE_ADD(NOW(), INTERVAL 1 DAY));
+    ('STUD2025', 1),
+    ('PROF2025', 2);
 

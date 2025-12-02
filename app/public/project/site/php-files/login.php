@@ -49,14 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
-	<style>
-		body { font-family: Arial, sans-serif; padding: 2rem; }
-		form { max-width: 320px; margin: 0 auto; display:flex; flex-direction:column; gap:0.5rem; }
-		input { padding:0.5rem; font-size:1rem; }
-		button { padding:0.6rem; font-size:1rem; }
-		.message { color: red; text-align:center; margin-bottom:1rem; }
-		.back-link { text-align:center; margin-top:1rem; display:block; }
-	</style>
 </head>
 <body>
 

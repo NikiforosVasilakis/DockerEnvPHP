@@ -9,8 +9,88 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NYU - New York University</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* History Section Styles */
+        .history-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eef7 100%);
+            position: relative;
+        }
+
+        .history-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .history-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .history-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .history-content {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .history-content p {
+            margin-bottom: 1.8rem;
+            text-align: left;
+            padding: 1.2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid #667eea;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .history-content p:hover {
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .history-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .history-section {
+                padding: 3rem 1rem;
+            }
+
+            .history-title {
+                font-size: 2rem;
+            }
+
+            .history-content {
+                font-size: 0.95rem;
+            }
+
+            .history-content p {
+                padding: 1rem;
+            }
+        }
    
-</head>
+    </style></head>
 <body>
     <!-- Header Navigation -->
     <header class="header">
@@ -25,12 +105,9 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                 <div class="nav-groups-wrapper">
                     <div class="nav-group nav-group-1">
                         <a href="about.html" class="nav-link">About</a>
-                        <a href="#research" class="nav-link">Research</a>
+                        <a href="research.html" class="nav-link">Research</a>
                         <a href="#admissions" class="nav-link">Admissions</a>
                         <a href="#news" class="nav-link">News</a>
-                    </div>
-                    <div class="nav-group nav-group-2">
-                        <a href="#community" class="nav-link">Community</a>
                         <a href="academics.html" class="nav-link">Academics</a>
                         <a href="uni_life.html" class="nav-link">Campus Life</a>
                         <div class="search-container">
@@ -57,8 +134,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
             </div>
             <?php else: ?>
             <div class="header-actions">
-                <a href="php-files/login.php" class="login-btn">Login</a>
-                <a href="php-files/register.php" class="register-btn">Register</a>
+                <a href="php-files/login.php" class="login-btn" target="_blank">e-class</a>
             </div>
             <?php endif; ?>
         </div>
@@ -84,6 +160,31 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                         <button class="nav-arrow" aria-label="Next">›</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section">
+        <div class="history-container">
+            <h2 class="history-title">History</h2>
+            <div class="history-content">
+                <p>
+                    New York University has a rich and storied history spanning nearly two centuries. Founded in 1831, 
+                    NYU has grown from a small institution into one of the world's leading research universities, 
+                    consistently ranking among the top universities globally.
+                </p>
+                <p>
+                    Throughout its distinguished history, NYU has been at the forefront of academic excellence, 
+                    research innovation, and social progress. From its humble beginnings in lower Manhattan, 
+                    the university has expanded to multiple campuses and become a beacon of intellectual achievement 
+                    and cultural diversity.
+                </p>
+                <p>
+                    Today, NYU continues its legacy of excellence through groundbreaking research, world-class faculty, 
+                    and a vibrant community of scholars, artists, and leaders from around the globe. Our commitment 
+                    to pushing the boundaries of knowledge and fostering critical thinking remains as strong as ever.
+                </p>
             </div>
         </div>
     </section>

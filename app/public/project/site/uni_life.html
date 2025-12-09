@@ -11,42 +11,29 @@
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
-                <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
+                <a href="index.php" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
                     <img src="img/nyu-logo.png" alt="NYU Logo" class="logo-icon">
                     <span class="logo-text">NEW YORK UNIVERSITY</span>
                 </a>
             </div>
             <nav class="main-nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="about.html">About <span class="chevron">▼</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#research">Research <span class="chevron">▼</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#admissions">Admissions <span class="chevron">▼</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#news">News <span class="chevron">▼</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#community">Community <span class="chevron">▼</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="academics.html">Academics <span class="chevron">▼</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="uni_life.html" class="active">Campus Life <span class="chevron">▼</span></a>
-                    </li>
-                </ul>
+                <div class="nav-groups-wrapper">
+                    <div class="nav-group nav-group-1">
+                        <a href="about.html" class="nav-link">About</a>
+                        <a href="research.html" class="nav-link">Research</a>
+                        <a href="addmitions.html" class="nav-link">Admissions</a>
+                        <a href="#news" class="nav-link">News</a>
+                        <a href="academics.html" class="nav-link">Academics</a>
+                        <a href="uni_life.html" class="nav-link">Campus Life</a>
+                        <div class="search-container">
+                            <input type="text" placeholder="Search..." class="search-input">
+                            <button class="search-btn" aria-label="Search"></button>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="header-actions">
-                <div class="search-container">
-                    <input type="text" placeholder="Search..." class="search-input">
-                    <button class="search-btn" aria-label="Search">🔍</button>
-                </div>
-                <button class="login-btn">Login</button>
+                <a href="php-files/login.php" class="login-btn" target="_blank">e-class</a>
             </div>
         </div>
     </header>

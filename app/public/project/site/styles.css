@@ -80,13 +80,10 @@ body {
     background-color: #e0e0e0;
     border-radius: 25px;
     padding: 0.5rem 0;
+    transition: background-color 0.22s ease, transform 0.22s ease;
 }
 
 .nav-group-1 {
-    background-color: #e0e0e0;
-}
-
-.nav-group-2 {
     background-color: #e0e0e0;
 }
 
@@ -99,7 +96,7 @@ body {
     align-items: center;
     gap: 0.25rem;
     padding: 0.5rem 0.75rem;
-    transition: color 0.3s ease;
+    transition: color 0.22s ease, transform 0.22s cubic-bezier(.2,.9,.3,1);
     white-space: nowrap;
     position: relative;
 }
@@ -117,6 +114,7 @@ body {
 
 .nav-link:hover {
     color: #57068c;
+    transform: translateY(-3px);
 }
 
 .nav-link.active {
@@ -200,11 +198,13 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.22s ease, transform 0.22s cubic-bezier(.2,.9,.3,1), box-shadow 0.22s ease;
 }
 
 .login-btn:hover {
     background-color: #2a2a2a;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(15,20,40,0.18);
 }
 
 /* Hero Section */

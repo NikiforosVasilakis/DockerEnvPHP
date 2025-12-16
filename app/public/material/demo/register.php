@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body { font-family: Arial; padding: 25px; background: #f4f4f4; }
         .container { background: #fff; padding: 20px; border-radius: 6px; max-width: 600px; margin: auto; border: 1px solid #ddd; }
         input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 4px; border: 1px solid #bbb; }
-        button { padding: 10px; background: #0066cc; colour: #fff; border: none; border-radius: 4px; }
+        button { padding: 10px; background: #0066cc; color: #fff; border: none; border-radius: 4px; }
         button:hover { background: #004c99; }
         .message { font-weight: bold; margin-bottom: 10px; }
     </style>

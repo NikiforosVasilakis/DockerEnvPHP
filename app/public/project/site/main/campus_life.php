@@ -10,10 +10,10 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Life - New York University</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/campus_life.css">
+    <link rel="stylesheet" href="../css/campus_life.css">
 </head>
 <body>
-    <?php include 'components/navbar.php';?>
+    <?php include '../components/navbar.php';?>
 
     <!-- Hero (matches other pages) -->
     <section class="page-hero">
@@ -41,21 +41,21 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
         <section class="content-section">
             <div class="life-grid">
                 <div class="life-card">
-                    <img src="img/bb.jpg" alt="Student Activities" class="life-img">
+                    <img src="../img/bb.jpg" alt="Student Activities" class="life-img">
                     <div class="life-content">
                         <h3>Student Organizations</h3>
                         <p>Join over 300 student clubs and organizations covering interests from academics to arts, culture, and community service.</p>
                     </div>
                 </div>
                 <div class="life-card">
-                    <img src="img/fl.jpg" alt="Housing" class="life-img">
+                    <img src="../img/fl.jpg" alt="Housing" class="life-img">
                     <div class="life-content">
                         <h3>Housing & Residence Life</h3>
                         <p>Live in the heart of NYC with a variety of residence halls offering different living experiences and communities.</p>
                     </div>
                 </div>
                 <div class="life-card">
-                    <img src="img/s-colab.jpg" alt="Dining" class="life-img">
+                    <img src="../img/s-colab.jpg" alt="Dining" class="life-img">
                     <div class="life-content">
                         <h3>Dining & Services</h3>
                         <p>Enjoy diverse dining options across campus, from cafes to dining halls, featuring cuisines from around the world.</p>
@@ -79,7 +79,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
         </section>
     </main>
 
-    <?php include 'components/footer.php';?>
+    <?php include '../components/footer.php';?>
 </body>
 </html>
 

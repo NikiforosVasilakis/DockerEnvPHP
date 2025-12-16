@@ -11,11 +11,11 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academics — NYU</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/academics.css">
+    <link rel="stylesheet" href="../css/academics.css">
 </head>
 <body>
     <!-- Header Navigation -->
-    <?php include 'components/navbar.php'; ?>
+    <?php include '../components/navbar.php'; ?>
 
     <!-- Programs grid -->
     <section id="programs" class="programs">
@@ -81,30 +81,6 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     </section>
 
     <!-- Footer -->
-    <?php include 'components/footer.php';?>
-    <script>
-        // Toggle user dropdown (only if logged in)
-        (function(){
-            var btn = document.getElementById('userBtn');
-            var dd = document.getElementById('userDropdown');
-            if (!btn || !dd) return; // elements don't exist if not logged in
-
-            btn.addEventListener('click', function(e){
-                e.stopPropagation();
-                var visible = dd.classList.toggle('visible');
-                btn.setAttribute('aria-expanded', visible ? 'true' : 'false');
-                dd.setAttribute('aria-hidden', visible ? 'false' : 'true');
-            });
-
-            // close dropdown when clicking outside
-            document.addEventListener('click', function(e){
-                if (dd.classList.contains('visible') && !btn.contains(e.target) && !dd.contains(e.target)) {
-                    dd.classList.remove('visible');
-                    btn.setAttribute('aria-expanded','false');
-                    dd.setAttribute('aria-hidden','true');
-                }
-            });
-        })();
-    </script> 
+    <?php include '../components/footer.php';?>
 </body>
 </html>

@@ -10,50 +10,10 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research — NYU</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Page-level styles matching About/Index */
-        body { background: #fbfdff; }
-        /* Use the global header styles from styles.css (transparent background) */
-        .header { background-color: transparent; }
-        .page-hero { padding:4rem 2rem; background: linear-gradient(180deg,#f4f7ff,#fff); }
-        .hero-inner { max-width:1200px; margin:0 auto; display:flex; gap:2rem; align-items:center; }
-        .hero-copy { flex:1; }
-        .hero-copy h1 { font-size:2.4rem; color:#0f1724; margin:0 0 0.5rem 0; }
-        .hero-copy p { margin:0 0 1rem 0; color:#444; line-height:1.7; }
-        .cta { display:inline-block; padding:0.7rem 1rem; background:#667eea; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; }
-
-        .labs-section { padding:2rem; max-width:1200px; margin:0 auto; }
-        .labs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.25rem; }
-        .lab-card {
-            background:#fff;
-            border-radius:10px;
-            padding:1rem;
-            box-shadow:0 10px 30px rgba(12,20,50,0.06);
-            min-height:160px;
-            display:flex;
-            flex-direction:column;
-            transition: transform 0.28s cubic-bezier(.2,.9,.3,1), box-shadow 0.28s ease;
-        }
-        .lab-card h3 { margin:0 0 0.5rem 0; color:#0f1724; }
-        .lab-card p { margin:0 0 0.75rem 0; color:#555; flex:1; }
-        .lab-card a { color:#667eea; text-decoration:none; font-weight:600; }
-        .lab-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(12,20,50,0.12); }
-
-        .tech-section { padding:2rem; background:linear-gradient(180deg,#fff,#fbfcff); }
-        .tech-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
-        .tech-card { background:#fff; border-radius:8px; padding:1rem; box-shadow:0 8px 24px rgba(12,20,50,0.06); transition: transform 0.26s cubic-bezier(.2,.9,.3,1), box-shadow 0.26s ease; }
-        .tech-card img { width:100%; height:130px; object-fit:cover; border-radius:6px; margin-bottom:0.75rem; }
-        .tech-card h4 { margin:0 0 0.4rem 0; }
-        .tech-card p { margin:0; color:#666; font-size:0.95rem; }
-        .tech-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(12,20,50,0.12); }
-
-        @media (max-width:900px){ .hero-inner{flex-direction:column; align-items:flex-start;} }
-    </style>
+    <link rel="stylesheet" href="../css/research.css">
 </head>
 <body>
-    <?php include 'components/navbar.php';?>
-
-
+    <?php include '../components/navbar.php';?>
     <!-- Hero -->
     <section class="page-hero">
         <div class="hero-inner">
@@ -63,7 +23,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                 <a class="cta" href="#labs">Explore Labs</a>
             </div>
             <div class="hero-media">
-                <img src="img/research.jpg" alt="Research" style="width:420px;max-width:40vw;border-radius:10px;box-shadow:0 18px 40px rgba(20,30,80,0.12)">
+                <img src="../img/research.jpg" alt="Research" style="width:420px;max-width:40vw;border-radius:10px;box-shadow:0 18px 40px rgba(20,30,80,0.12)">
             </div>
         </div>
     </section>
@@ -100,29 +60,29 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
         <h2 style="text-align:center;margin-bottom:1rem;color:#0f1724;">Latest Technology & Publications</h2>
         <div class="tech-grid">
             <article class="tech-card">
-                <img src="img/research_1.jpg" alt="tech">
+                <img src="../img/research_1.jpg" alt="tech">
                 <h4>Efficient Language Models</h4>
                 <p>New approaches to compress and distill language models without losing quality.</p>
             </article>
             <article class="tech-card">
-                <img src="img/research_2.jpg" alt="tech">
+                <img src="../img/research_2.jpg" alt="tech">
                 <h4>Wearable Health Sensors</h4>
                 <p>Low-power sensing and analytics for continuous health monitoring in real-world settings.</p>
             </article>
             <article class="tech-card">
-                <img src="img/research_3.jpg" alt="tech">
+                <img src="../img/research_3.jpg" alt="tech">
                 <h4>Urban Climate Modeling</h4>
                 <p>High-resolution simulations to predict heat islands and inform mitigation strategies.</p>
             </article>
             <article class="tech-card">
-                <img src="img/research_4.jpg" alt="tech">
+                <img src="../img/research_4.jpg" alt="tech">
                 <h4>Robotics & Automation</h4>
                 <p>Robust perception and control systems for collaborative robots in complex environments.</p>
             </article>
         </div>
     </section>
 
-    <?php include 'components/footer.php';?>
+    <?php include '../components/footer.php';?>
 
 </body>
 </html>

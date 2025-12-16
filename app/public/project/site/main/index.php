@@ -2,17 +2,18 @@
 session_start();
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NYU - New York University</title>
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/index.css">
     </head>
 <body>
-    <?php include 'components/navbar.php';?>
+    <?php include '../components/navbar.php';?>
     <!-- Hero Section -->
     <section class="hero-wrapper">
         <div class="hero">
@@ -20,7 +21,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                 <div class="hero-overlay">
                     <h1 class="hero-text">New York</h1>
                 </div>
-                <img src="img/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="NYU Campus" class="hero-bg">
+                <img src="../img/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="NYU Campus" class="hero-bg">
             </div>
             <div class="promo-banner">
                 <div class="promo-content">
@@ -62,32 +63,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
         </div>
     </section>
 
-    <?php include 'components/footer.php';?>
-
-    <script>
-        // Toggle user dropdown (only if logged in)
-        (function(){
-            var btn = document.getElementById('userBtn');
-            var dd = document.getElementById('userDropdown');
-            if (!btn || !dd) return; // elements don't exist if not logged in
-
-            btn.addEventListener('click', function(e){
-                e.stopPropagation();
-                var visible = dd.classList.toggle('visible');
-                btn.setAttribute('aria-expanded', visible ? 'true' : 'false');
-                dd.setAttribute('aria-hidden', visible ? 'false' : 'true');
-            });
-
-            // close dropdown when clicking outside
-            document.addEventListener('click', function(e){
-                if (dd.classList.contains('visible') && !btn.contains(e.target) && !dd.contains(e.target)) {
-                    dd.classList.remove('visible');
-                    btn.setAttribute('aria-expanded','false');
-                    dd.setAttribute('aria-hidden','true');
-                }
-            });
-        })();
-    </script>
+    <?php include '../components/footer.php';?>
 </body>
 </html>
 

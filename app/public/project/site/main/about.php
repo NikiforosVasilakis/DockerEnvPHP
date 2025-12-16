@@ -9,11 +9,11 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>About — NYU</title>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="css/about.css">
+	<link rel="stylesheet" href="../css/about.css">
+	<link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-	<?php include 'components/navbar.php';?>
+	<?php include '../components/navbar.php';?>
 	<!-- Hero -->
 	<section class="about-hero">
 		<div class="hero-wrap">
@@ -26,7 +26,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 			</div>
 
 			<div class="hero-media">
-				<!-- <img src="img/nyu-camp.jpg" alt="NYU campus" class="hero-img"> -->
+				<img src="../img/nyu-camp.jpg" alt="NYU campus" class="hero-img">
 			</div>
 		</div>
 
@@ -40,7 +40,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 	<!-- Profile / Mission -->
 	<section class="profile-row">
 		<div class="profile-card">
-			<img src="img/president.jpg" alt="President">
+			<img src="../img/president.jpg" alt="President">
 			<h3>University President</h3>
 			<p class="role">Leadership & Vision</p>
 			<p>Committed to academic excellence, interdisciplinary research, and global engagement.</p>
@@ -81,31 +81,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 	</section>
 
 	<!-- Footer -->
-	<?php include 'components/footer.php';?>
-	 <script>
-        // Toggle user dropdown (only if logged in)
-        (function(){
-            var btn = document.getElementById('userBtn');
-            var dd = document.getElementById('userDropdown');
-            if (!btn || !dd) return; // elements don't exist if not logged in
-
-            btn.addEventListener('click', function(e){
-                e.stopPropagation();
-                var visible = dd.classList.toggle('visible');
-                btn.setAttribute('aria-expanded', visible ? 'true' : 'false');
-                dd.setAttribute('aria-hidden', visible ? 'false' : 'true');
-            });
-
-            // close dropdown when clicking outside
-            document.addEventListener('click', function(e){
-                if (dd.classList.contains('visible') && !btn.contains(e.target) && !dd.contains(e.target)) {
-                    dd.classList.remove('visible');
-                    btn.setAttribute('aria-expanded','false');
-                    dd.setAttribute('aria-hidden','true');
-                }
-            });
-        })();
-    </script> 
+	<?php include '../components/footer.php';?>
 </body>
 </html>
 

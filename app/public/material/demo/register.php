@@ -1,4 +1,11 @@
 <?php
+/*
+ File: material/demo/register.php
+ Purpose: Demo registration page (uses connect.php). Contains PHP handling and a demo form.
+ Sections:
+    - PHP: session start, DB check of registration codes, insert user
+    - HTML/CSS: demo form layout and messages
+*/
 session_start();
 require_once 'connect.php';
 

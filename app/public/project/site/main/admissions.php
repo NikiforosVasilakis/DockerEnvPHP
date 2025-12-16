@@ -8,11 +8,11 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admissions — NYU</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/admissions.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admissions.css">
 </head>
 <body>
-    <?php include 'components/navbar.php'; ?>
+    <?php include '../components/navbar.php'; ?>
     <!-- Hero -->
     <section class="page-hero">
         <div class="hero-inner">
@@ -141,13 +141,13 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
             <h2 style="color:#0f1724;margin-bottom:0.5rem;">Contact & Next Steps</h2>
             <p style="color:#444;line-height:1.6;">For program-specific questions, contact the admissions office of the school you are applying to. General admissions questions can be sent to <a href="mailto:admissions@nyu.edu">admissions@nyu.edu</a> or use the online contact forms on program pages.</p>
             <p style="color:#444;line-height:1.6;">Plan a campus visit or attend a virtual information session — these are great ways to learn about fit, program strengths, and student life.</p>
-            <a class="cta" href="php-files/register.php" style="display:inline-block;margin-top:0.6rem;">Start Your Application</a>
+            <a class="cta" href="../auth/register.php" style="display:inline-block;margin-top:0.6rem;">Start Your Application</a>
         </section>
     </main>
 
     <!-- Footer -->
      <footer>
-    <?php include 'components/footer.php'; ?>
+    <?php include '../components/footer.php'; ?>
     </footer>
 </body>
 </html>

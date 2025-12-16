@@ -1,3 +1,74 @@
+.life-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.life-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.life-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.life-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.life-content {
+    padding: 2rem;
+}
+
+.life-content h3 {
+    font-size: 1.5rem;
+    color: #57068c;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.life-content p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.content-section {
+    margin-bottom: 4rem;
+}
+
+.content-wrapper {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.content-wrapper h2 {
+    font-size: 2.5rem;
+    color: #57068c;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.content-wrapper p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.content-wrapper p:last-child {
+    margin-bottom: 0;
+}
 /* Campus Life page styles (moved from campus_life.php) */
 body { background: #fbfdff; }
 .header { background-color: transparent; }

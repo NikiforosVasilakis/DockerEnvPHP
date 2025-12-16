@@ -1,0 +1,31 @@
+/* Campus Life page styles (moved from campus_life.php) */
+body { background: #fbfdff; }
+.header { background-color: transparent; }
+.page-hero { padding:4rem 2rem; background: linear-gradient(180deg,#f4f7ff,#fff); }
+.hero-inner { max-width:1200px; margin:0 auto; display:flex; gap:2rem; align-items:center; }
+.hero-copy { flex:1; }
+.hero-copy h1 { font-size:2.4rem; color:#0f1724; margin:0 0 0.5rem 0; }
+.hero-copy p { margin:0 0 1rem 0; color:#444; line-height:1.7; }
+.cta { display:inline-block; padding:0.7rem 1rem; background:#667eea; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; }
+
+.life-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.25rem; max-width:1300px; margin:1.5rem auto; padding:2.5rem 1rem; }
+.life-card { background:#fff; border-radius:10px; padding:1rem; box-shadow:0 10px 30px rgba(12,20,50,0.06); display:flex; gap:1rem; align-items:flex-start; }
+.life-img { width:120px; height:90px; object-fit:cover; border-radius:8px; flex:0 0 120px; }
+.life-content h3 { margin:0 0 0.35rem 0; color:#0f1724; }
+.life-content p { margin:0; color:#555; line-height:1.6; }
+
+.content-wrapper { max-width:1300px; margin:0 auto; padding:2.5rem 1rem; }
+.page-header { margin:0; }
+
+@media (max-width:900px){ .hero-inner{flex-direction:column; align-items:flex-start;} .life-card{flex-direction:column; align-items:flex-start;} .life-img{width:100%;height:180px;flex:0 0 auto;} }
+
+/* City section: remove boxed background so content sits inline with page */
+.city-section { max-width:1500px; margin:2rem auto; padding:0; background:transparent; border-radius:0; box-shadow:none; }
+.city-section .content-wrapper { display:grid; grid-template-columns:1fr 360px; gap:2.5rem; align-items:center; padding:2.5rem 1rem; }
+.city-section h2 { margin-top:0; color:#0f1724; }
+.city-section p { color:#444; line-height:1.75; margin:0; }
+.city-cta { display:flex; flex-direction:column; gap:0.6rem; }
+.city-cta a.cta { width:100%; text-align:center; }
+
+@media (max-width:900px){ .city-section .content-wrapper { grid-template-columns:1fr; } .city-section { padding:0.5rem 0; } .city-cta { flex-direction:row; gap:0.5rem; } .city-cta a.cta{flex:1;} }
+

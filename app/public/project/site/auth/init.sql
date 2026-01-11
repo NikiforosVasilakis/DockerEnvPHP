@@ -24,7 +24,8 @@ CREATE TABLE users (
 INSERT INTO user_roles (role_name, can_create, can_read, can_update, can_delete)
 VALUES
     ('Student', 0, 1, 1, 0),
-    ('Teacher', 1, 1, 1, 1);
+    ('Teacher', 1, 1, 1, 1),
+    ('Admin',   1, 1, 1, 1);
 
 
 CREATE TABLE registration_codes (
@@ -39,4 +40,5 @@ CREATE TABLE registration_codes (
 INSERT INTO registration_codes (reg_code, role_id,expires_at)
 VALUES
     ('STUD2025', 1, '2025-12-31 23:59:59'),
-    ('PROF2025', 2, '2025-12-31 23:59:59');
+    ('PROF2025', 2, '2025-12-31 23:59:59'),
+    ('ADMN2025', 3, '2025-12-31 23:59:59');

@@ -54,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if ($u_res && $u_res->num_rows === 1) {
 				$new_user = $u_res->fetch_assoc();
 				$_SESSION['user'] = $new_user;
-				header('Location: ../index.php');
+				$_SESSION['just_logged_in'] = true;
+				header('Location: ../main/Dashboard/main.php');
 				exit;
 			}
 

@@ -42,14 +42,14 @@
                             <div class="user-role"><?= htmlspecialchars($user['role_name'] ?? ($user['role_id'] ?? 'role_id')) ?></div>
                         </div>
                         <div class="user-actions">
-                            <a href="php-files/logout.php">Logout</a>
+                            <a href="../auth/logout.php">Logout</a>
                         </div>
                     </div>
                 </div>
             </div>
             <?php else: ?>
             <div class="header-actions">
-                <a href="php-files/login.php" class="login-btn" target="_blank">e-class</a>
+                <a href="../auth/login.php" class="login-btn" target="_blank">e-class</a>
             </div>
             <?php endif; ?>
         </div>

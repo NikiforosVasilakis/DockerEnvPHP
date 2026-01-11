@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 				// Set session and redirect back to site index
 				$_SESSION['user'] = $user;
-				header('Location: ../index.php');
+				$_SESSION['just_logged_in'] = true;
+				header('Location: ../main/Dashboard/main.php');
 				exit;
 			} else {
 				$message = "Incorrect password.";
@@ -235,10 +236,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		<div class="auth-footer">
 			<a href="#">Forgot password?</a>
-			<a href="../php-files/register.php">New user?</a>
+			<a href="../auth/register.php">New user?</a>
 		</div>
 
-		<a href="../index.php" class="back-link">← Back to site</a>
+		<a href="../main/index.php" class="back-link">← Back to site</a>
 	</div>
 </div>
 

@@ -9,8 +9,8 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NYU - New York University</title>
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="styles.css">
     </head>
 <body>
     <?php include '../components/navbar.php';?>

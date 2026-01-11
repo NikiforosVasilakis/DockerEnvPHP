@@ -9,7 +9,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Life - New York University</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css"> 
     <link rel="stylesheet" href="../css/campus_life.css">
 </head>
 <body>

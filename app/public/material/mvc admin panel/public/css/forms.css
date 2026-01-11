@@ -1,0 +1,152 @@
+/* General Form Styles */
+form {
+    padding: 20px;
+    background-color: #f9f9fb; /* Light background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Form Headings */
+form h1, form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333; /* Dark text color */
+    text-align: center;
+}
+
+/* Labels */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555; /* Medium gray text */
+}
+
+/* Input Fields */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form input[type="date"],
+form textarea,
+form select {
+    width: 100%; /* Full width */
+    padding: 10px 15px; /* Internal spacing */
+    margin-bottom: 15px; /* Space below */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    background-color: #fff; /* White background */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Focus Styles */
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus,
+form input[type="date"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #4a4ae0; /* Highlight border */
+    box-shadow: 0 0 5px rgba(74, 74, 224, 0.3); /* Glowing shadow */
+    outline: none; /* Remove default focus outline */
+}
+
+/* Textarea */
+form textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px; /* Minimum height */
+}
+
+/* Select Dropdown */
+form select {
+    appearance: none; /* Remove native dropdown styles */
+    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 10 6%22%3E%3Cpath d%3D%22M0 0l5 6 5-6z%22 fill%3D%22%23000%22/%3E%3C/svg%3E') no-repeat right 10px center;
+    background-size: 12px; /* Icon size */
+    padding-right: 30px; /* Space for dropdown icon */
+}
+
+/* Checkboxes and Radio Buttons */
+form input[type="checkbox"],
+form input[type="radio"] {
+    margin-right: 10px; /* Space between input and label */
+    transform: scale(1.2); /* Slightly larger size */
+    accent-color: #4a4ae0; /* Customize check/radio color */
+}
+
+/* Submit Button */
+form button[type="submit"] {
+    width: 100%; /* Full width */
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+    background-color: #4a4ae0; /* Primary button color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover and Focus on Submit Button */
+form button[type="submit"]:hover {
+    background-color: #3a3abf; /* Darker hover color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Elevate button */
+}
+
+/* Disabled Button */
+form button[type="submit"]:disabled {
+    background-color: #ccc; /* Disabled gray */
+    cursor: not-allowed; /* Disabled cursor */
+    box-shadow: none; /* Remove shadow */
+}
+
+/* Error Messages */
+form .error {
+    color: #d9534f; /* Red color for errors */
+    font-size: 0.875rem; /* Smaller text */
+    margin-top: -10px; /* Pull closer to the input */
+    margin-bottom: 10px;
+}
+
+/* Success Messages */
+form .success {
+    color: #5cb85c; /* Green color for success */
+    font-size: 0.875rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Alignment Helpers */
+form .form-group {
+    margin-bottom: 20px; /* Space between groups */
+}
+
+form .form-group.inline {
+    display: flex; /* Inline layout */
+    gap: 15px; /* Space between elements */
+    align-items: center; /* Align vertically */
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px; /* Space between groups */
+}
+
+/* Required Field Indicator */
+.required {
+    color: #d9534f; /* Red color for required symbol */
+    margin-left: 5px;
+    font-size: 0.9rem;
+    vertical-align: middle; /* Align with the label */
+}
+
+/* Placeholder Text */
+input::placeholder,
+textarea::placeholder {
+    color: #aaa; /* Lighter text color for placeholders */
+    font-style: italic; /* Italicize placeholder text */
+}

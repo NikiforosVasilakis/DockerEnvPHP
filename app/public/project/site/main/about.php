@@ -10,7 +10,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>About — NYU</title>
 	<link rel="stylesheet" href="../css/about.css">
-	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
 	<?php include '../components/navbar.php';?>

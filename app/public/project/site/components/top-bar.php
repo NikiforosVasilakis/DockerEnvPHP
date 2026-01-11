@@ -1,0 +1,202 @@
+<div class="top-bar">
+    <div class="top-bar-left">
+        <h1 class="page-title">Dashboard</h1>
+    </div>
+    
+    <div class="top-bar-right">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for students/teachers/courses...">
+            <button class="search-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <button class="icon-btn notification-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge">3</span>
+        </button>
+        
+        <div class="user-profile">
+            <img src="../img/nyu-logo.png" alt="User" class="user-avatar">
+        </div>
+    </div>
+</div>
+
+<style>
+.top-bar {
+    height: 70px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: fixed;
+    top: 0;
+    left: 290px;
+    right: 0;
+    z-index: 100;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.top-bar-left {
+    flex-shrink: 0;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-box {
+    position: relative;
+    width: 320px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.65rem 3rem 0.65rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    background: #f9fafb;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #5B5FFF;
+    background: white;
+}
+
+.search-input::placeholder {
+    color: #9ca3af;
+}
+
+.search-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #6b7280;
+}
+
+.icon-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.icon-btn:hover {
+    background: #f3f4f6;
+}
+
+.icon-btn svg {
+    width: 22px;
+    height: 22px;
+    color: #374151;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.1rem 0.35rem;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e5e7eb;
+}
+
+@media (max-width: 1024px) {
+    .top-bar {
+        left: 200px;
+        padding: 0 1.5rem;
+    }
+
+    .search-box {
+        width: 250px;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        left: 180px;
+        padding: 0 1rem;
+    }
+
+    .search-box {
+        width: 200px;
+    }
+
+    .search-input {
+        font-size: 0.85rem;
+        padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    }
+
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    .top-bar-right {
+        gap: 1rem;
+    }
+}
+</style>

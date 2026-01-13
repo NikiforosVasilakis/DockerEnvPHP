@@ -39,6 +39,6 @@ CREATE TABLE registration_codes (
 
 INSERT INTO registration_codes (reg_code, role_id,expires_at)
 VALUES
-    ('STUD2025', 1, '2025-12-31 23:59:59'),
-    ('PROF2025', 2, '2025-12-31 23:59:59'),
-    ('ADMN2025', 3, '2025-12-31 23:59:59');
+    ('STUD2025', 1, '2027-12-31 23:59:59'),
+    ('PROF2025', 2, '2027-12-31 23:59:59'),
+    ('ADMN2025', 3, '2027-12-31 23:59:59');

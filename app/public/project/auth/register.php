@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$new_user = $u_res->fetch_assoc();
 				$_SESSION['user'] = $new_user;
 				$_SESSION['just_logged_in'] = true;
-				header('Location: ../main/Dashboard/main.php');
+				header('Location: /project/dashboard/dashboard.php');
 				exit;
 			}
 

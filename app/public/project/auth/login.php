@@ -18,19 +18,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if (isset($user['password']) && password_verify($password, $user['password'])) {
 				// Load role permissions/name
 				$role_id = isset($user['role_id']) ? intval($user['role_id']) : 0;
+				
 				if ($role_id > 0) {
 					$role_sql = "SELECT * FROM user_roles WHERE id = $role_id LIMIT 1";
 					$role_res = $conn->query($role_sql);
+					
 					if ($role_res && $role_res->num_rows === 1) {
 						$role = $role_res->fetch_assoc();
-						$user = array_merge($user, ['role_name' => $role['role_name']]);
+						$user = array_merge($user, ['role_name' => $role['role_name'],'role' => strtolower($role['role_name'])]);
 					}
 				}
 
 				// Set session and redirect back to site index
 				$_SESSION['user'] = $user;
 				$_SESSION['just_logged_in'] = true;
-				header('Location: ../main/Dashboard/main.php');
+				header('Location: /project/dashboard/dashboard.php');
 				exit;
 			} else {
 				$message = "Incorrect password.";

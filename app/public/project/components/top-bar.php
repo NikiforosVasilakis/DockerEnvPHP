@@ -22,9 +22,7 @@
             <span class="notification-badge">3</span>
         </button>
         
-        <div class="user-profile">
-            <img src="../img/nyu-logo.png" alt="User" class="user-avatar">
-        </div>
+
     </div>
 </div>
 

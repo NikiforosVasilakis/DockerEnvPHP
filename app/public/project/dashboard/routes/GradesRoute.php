@@ -31,7 +31,7 @@ return [
 
     // STUDENT grades
 
-    ['GET', '/project/teacher/dashboard/grades',
+    ['GET', '/project/student/dashboard/grades',
         [GradeController::class, 'studentIndex'],
         ['AuthMiddleware', 'RoleMiddleware:student']
     ],

@@ -45,6 +45,8 @@ $routes = array_merge($routes, require BASE_PATH . '/routes/CoursesRoute.php');
 $routes = array_merge($routes, require BASE_PATH . '/routes/AssignmentsRoute.php');
 $routes = array_merge($routes, require BASE_PATH . '/routes/GradesRoute.php');
 $routes = array_merge($routes, require BASE_PATH . '/routes/SubmissionsRoute.php');
+$routes = array_merge($routes, require BASE_PATH . '/routes/CommunicationRoute.php');
+$routes = array_merge($routes, require BASE_PATH . '/routes/SettingsRoute.php');
 
 
 // Load Router class

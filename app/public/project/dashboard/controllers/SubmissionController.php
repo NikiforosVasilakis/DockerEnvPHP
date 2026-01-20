@@ -5,35 +5,30 @@ class SubmissionController
     //teacher
     public function teacherIndex(): void
     {
-        echo 'hello from t index';
+        require BASE_PATH . '/dashboard/views/submissions/teacher/index.php'
     
     }
 
     public function create(): void
     {
-        echo 'hello from t create';
+        require BASE_PATH . '/dashboard/views/submissions/teacher/create.php'
     
     }
     public function edit(): void
     {
-        echo 'hello from t edit';
+        require BASE_PATH . '/dashboard/views/submissions/teacher/edit.php'
     
     }
     //student
     public function studentIndex(): void
     {
-        echo 'hello from t index';
+        require BASE_PATH . '/dashboard/views/submissions/teacher/index.php'
     
     }
 
-    public function Studentcreate(): void
-    {
-        echo 'hello from t create';
-    
-    }
     public function Studentedit(): void
     {
-        echo 'hello from t edit';
+        require BASE_PATH . '/dashboard/views/submissions/teacher/edit.php'
     
     }
 }

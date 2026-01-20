@@ -13,7 +13,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard/courses" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="7" height="7"></rect>
                 <rect x="14" y="3" width="7" height="7"></rect>
@@ -22,13 +22,13 @@
             </svg>
             <span>Dashboard</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/cources" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard/courses" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M2 3v18l9-4 9 4V3H2z"></path>
             </svg>
             <span>Courses</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/assignments" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard/assignments" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
@@ -37,7 +37,7 @@
             </svg>
             <span>Assignments</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/grades" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard/grades" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="6" y1="20" x2="6" y2="10"></line>
                 <line x1="12" y1="20" x2="12" y2="4"></line>
@@ -45,14 +45,14 @@
             </svg>
             <span>Grades</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/TeacherCommunication" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard/TeacherCommunication" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
             </svg>
             <span>Teachers</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/StudentCommunication" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard/StudentCommunication" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -61,14 +61,14 @@
             </svg>
             <span>Students</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/settings" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/settings" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M12 1v6m0 6v6m-7.07-7.07l4.24 4.24m2.83 0l4.24 4.24M1 12h6m6 0h6m-7.07 7.07l4.24-4.24m2.83-2.83l4.24-4.24"></path>
             </svg>
             <span>Settings</span>
         </a>
-        <a href="<?= BASE_URL ?>/z/auth/logout.php" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/auth/logout.php" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M10 17l5-5-5-5"></path>
                 <path d="M15 12H3"></path>

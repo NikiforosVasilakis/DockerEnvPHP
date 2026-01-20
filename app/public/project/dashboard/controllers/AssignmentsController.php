@@ -5,25 +5,25 @@ class AssignmentsController
     //teacher
     public function teacherIndex(): void
     {
-        echo 'hello from t index';
+        require BASE_PATH . '/views/assignments/teacher/index.php';
     
     }
 
     public function create(): void
     {
-        echo 'hello from t create';
+        require BASE_PATH . '/views/assignments/teacher/create.php';
     
     }
 
     //student
     public function studentIndex(): void
     {
-        echo 'hello from s';
+        require BASE_PATH . '/views/assignments/student/index.php';
     
     }
     public function submit(): void
     {
-        echo 'hello from s submit';
+        require BASE_PATH . '/views/assignments/student/submit.php';
     
     }
 }

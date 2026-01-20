@@ -5,29 +5,31 @@ class CourseController
     //teacher
     public function teacherIndex(): void
     {
-        echo 'hello from t index';
+        require BASE_PATH . '/views/Courses/teacher/index.php';
     
     }
 
     public function create(): void
     {
-        echo 'hello from t create';
+        require BASE_PATH . '/views/Courses/teacher/create.php';
     
     }
+
+    
     public function edit(): void
     {
-        echo 'hello from t edit';
+        require BASE_PATH . '/views/Courses/teacher/edit.php';
     
     }
     //student
     public function studentIndex(): void
     {
-        echo 'hello from s edit';
+        require BASE_PATH . '/views/Courses/student/index.php';
     
     }
     public function show(): void
     {
-        echo 'hello from s show';
+        require BASE_PATH . '/views/Courses/student/show.php';
     
     }
 }

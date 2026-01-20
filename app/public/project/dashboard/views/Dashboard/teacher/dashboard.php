@@ -1,18 +1,105 @@
-<h1>Hello teach</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/project/css/styles.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/project/css/navbar.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/project/css/sidebar.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/project/css/top-bar.css">
+</head>
+<body>
+    <?php include BASE_PATH . '/../components/sidebar.php'; ?>
+    <?php include BASE_PATH . '/../components/top-bar.php'; ?>
+    
+    <main class="dashboard-main">
+        <!-- Courses Panel -->
+        <?php include BASE_PATH . '/../components/cource_panel.php'; ?>
 
-<h2>from cources</h2>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/cources">Index</a>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/cources/edit">edit</a>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/cources/create">create</a>
+        <!-- Assignments Panel -->
+        <?php include BASE_PATH . '/../components/assignments.php'; ?>
 
-<h2>from assignhments</h2>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/assignments">index</a>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/assignments/create">create</a>
+        <!-- Grades Panel -->
+        <?php include BASE_PATH . '/../components/grades-comp.php'; ?>
 
-<h2>from grades</h2>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/grades">index</a>
+        <!-- Students Panel -->
+        <?php include BASE_PATH . '/../components/students-comp.php'; ?>
 
-<h2>from submissions</h2>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/submissions">Index</a>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/submissions/edit">edit</a>
-<a href="<?= BASE_URL ?>/project/teacher/dashboard/submissions/create">create</a>
+        <!-- Teachers Panel -->
+        <?php include BASE_PATH . '/../components/teachers-comp.php'; ?>
+    </main>
+
+    <style>
+        .dashboard-main {
+            margin-left: 290px;
+            padding: 100px 20px 20px 20px;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* Panel Alignment - Clear floats and align right */
+        .course-panel-box,
+        .assignments-panel-box,
+        .grades-panel-box,
+        .students-panel-box,
+        .teachers-panel-box {
+            margin: 20px 15px;
+            max-width: 950px;
+            width: calc(100% - 30px);
+        }
+
+        /* Clear floats after each panel */
+        .course-panel-box::after,
+        .assignments-panel-box::after,
+        .grades-panel-box::after,
+        .students-panel-box::after,
+        .teachers-panel-box::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-main {
+                margin-left: 200px;
+                padding: 90px 15px 15px 15px;
+            }
+
+            .greeting-card {
+                padding: 30px;
+            }
+
+            .greeting-text {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-main {
+                margin-left: 180px;
+                padding: 80px 10px 10px 10px;
+            }
+
+            .greeting-card {
+                padding: 25px;
+                margin: 0;
+            }
+
+            .greeting-text {
+                font-size: 1.4rem;
+            }
+
+            .greeting-subtext {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</body>
+</html>
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-main {
+                margin-left: 180px;
+                padding: 80px 10px 10px 10px

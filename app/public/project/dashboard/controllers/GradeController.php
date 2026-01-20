@@ -2,13 +2,13 @@
 class GradeController{
     public function teacherIndex(): void
         {
-            echo 'hello from t index';
+            require BASE_PATH . '/views/grades/teacher/index.php';
         
         }
         //student
         public function studentIndex(): void
         {
-            echo 'hello from s index';
+            require BASE_PATH . '/views/grades/student/index.php';
         
         }
 

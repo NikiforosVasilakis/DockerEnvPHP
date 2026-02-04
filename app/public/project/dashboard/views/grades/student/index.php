@@ -1,26 +1,119 @@
 <?php
-// Sample grades data - replace with database queries
-$grades = [
-    ["module_name" => "Web Development", "grade" => "A", "percentage" => "95"],
-    ["module_name" => "Database Systems", "grade" => "B+", "percentage" => "87"],
-    ["module_name" => "Computer Networks", "grade" => "A-", "percentage" => "90"],
-    ["module_name" => "Software Engineering", "grade" => "A", "percentage" => "92"],
-];
+session_start();
+// Fetch grades from DB
+$grades = [];
+$assignment_grades = [];
 
-$assignment_grades = [
-    ["assignment_name" => "Project 1: Blog System", "grade" => "A", "percentage" => "92"],
-    ["assignment_name" => "Quiz: Database Queries", "grade" => "B+", "percentage" => "85"],
-    ["assignment_name" => "Assignment: Network Design", "grade" => "A", "percentage" => "94"],
-    ["assignment_name" => "Presentation: Software Design", "grade" => "A-", "percentage" => "88"],
-];
+// Resolve student_id from session (multiple possible keys)
+$student_id = null;
+if (isset($_SESSION['user_id'])) {
+    $student_id = (int)$_SESSION['user_id'];
+} elseif (isset($_SESSION['user']) && isset($_SESSION['user']['id'])) {
+    $student_id = (int)$_SESSION['user']['id'];
+} elseif (isset($_SESSION['id'])) {
+    $student_id = (int)$_SESSION['id'];
+}
+
+$host = 'db';
+$username = 'root';
+$password = 'rootpass';
+$database = 'Univercity_DB';
+
+$conn = @new mysqli($host, $username, $password, $database);
+if (!$conn->connect_error) {
+    // If we have the user email in session but no ID, fetch ID by email
+    if (empty($student_id) && !empty($_SESSION['email'])) {
+        if ($stmt = $conn->prepare('SELECT id FROM users WHERE email = ? LIMIT 1')) {
+            $stmt->bind_param('s', $_SESSION['email']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($row = $result->fetch_assoc()) {
+                $student_id = (int)$row['id'];
+            }
+            $stmt->close();
+        }
+    }
+
+    if (!empty($student_id)) {
+        // Fetch final/module grades with feedback
+        $sql_final = "SELECT 
+                        course AS module_name,
+                        letter_grade AS grade,
+                        percentage,
+                        feedback,
+                        created_at
+                    FROM final_grades
+                    WHERE student_id = ?
+                    ORDER BY created_at DESC";
+
+        if ($stmt = $conn->prepare($sql_final)) {
+            $stmt->bind_param('i', $student_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
+                $grades[] = $row;
+            }
+            $stmt->close();
+        }
+
+        // Fetch assignment grades with feedback
+        $sql_assignments = "SELECT 
+                                a.title AS assignment_name,
+                                g.points_awarded,
+                                a.max_points,
+                                g.feedback,
+                                g.graded_at
+                            FROM grades g
+                            INNER JOIN assignment_submissions sub ON g.submission_id = sub.id
+                            INNER JOIN assignments a ON sub.assignment_id = a.id
+                            WHERE sub.student_id = ?
+                            ORDER BY g.graded_at DESC";
+
+        if ($stmt = $conn->prepare($sql_assignments)) {
+            $stmt->bind_param('i', $student_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
+                $percentage = round(($row['points_awarded'] / $row['max_points']) * 100, 1);
+
+                // Determine letter grade
+                if ($percentage >= 93) $letter = 'A';
+                elseif ($percentage >= 90) $letter = 'A-';
+                elseif ($percentage >= 87) $letter = 'B+';
+                elseif ($percentage >= 83) $letter = 'B';
+                elseif ($percentage >= 80) $letter = 'B-';
+                elseif ($percentage >= 77) $letter = 'C+';
+                elseif ($percentage >= 73) $letter = 'C';
+                elseif ($percentage >= 70) $letter = 'C-';
+                elseif ($percentage >= 67) $letter = 'D+';
+                elseif ($percentage >= 60) $letter = 'D';
+                else $letter = 'F';
+
+                $assignment_grades[] = [
+                    'assignment_name' => $row['assignment_name'],
+                    'grade' => $letter,
+                    'percentage' => $percentage,
+                    'feedback' => $row['feedback'],
+                    'graded_at' => $row['graded_at']
+                ];
+            }
+            $stmt->close();
+        }
+    }
+
+    $conn->close();
+}
 
 // Calculate overall GPA (simple average)
 $all_grades = array_merge($grades, $assignment_grades);
-$total_percentage = 0;
-foreach ($all_grades as $grade) {
-    $total_percentage += (int)$grade['percentage'];
+$overall_gpa = 0;
+if (count($all_grades) > 0) {
+    $total_percentage = 0;
+    foreach ($all_grades as $grade) {
+        $total_percentage += (float)$grade['percentage'];
+    }
+    $overall_gpa = round($total_percentage / count($all_grades), 1);
 }
-$overall_gpa = round($total_percentage / count($all_grades), 1);
 ?>
 
 <!DOCTYPE html>
@@ -131,8 +224,7 @@ $overall_gpa = round($total_percentage / count($all_grades), 1);
 
         .grade-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             padding: 1.2rem;
             background: #f9fafb;
             border-radius: 12px;
@@ -144,23 +236,38 @@ $overall_gpa = round($total_percentage / count($all_grades), 1);
         .grade-item:hover {
             background: #f0f0f0;
             border-color: #e0e0e0;
-            transform: translateX(5px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .grade-item:last-child {
             margin-bottom: 0;
         }
 
+        .grade-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
         .grade-info {
             display: flex;
             flex-direction: column;
             gap: 0.3rem;
+            flex: 1;
         }
 
         .grade-name {
             font-size: 1.1rem;
             font-weight: 600;
             color: #2c3e50;
+        }
+
+        .grade-date {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 500;
         }
 
         .grade-detail {
@@ -200,12 +307,39 @@ $overall_gpa = round($total_percentage / count($all_grades), 1);
             background: #f59e0b;
         }
 
+        .grade-f {
+            background: #dc2626;
+        }
+
         .grade-percentage {
             font-size: 0.95rem;
             color: #666;
             font-weight: 500;
             min-width: 50px;
             text-align: right;
+        }
+
+        .grade-feedback {
+            padding: 0.75rem;
+            background: #fff;
+            border-left: 3px solid #667eea;
+            border-radius: 8px;
+            margin-top: 0.75rem;
+        }
+
+        .feedback-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feedback-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
         }
 
         .stats-grid {
@@ -297,8 +431,8 @@ $overall_gpa = round($total_percentage / count($all_grades), 1);
     </style>
 </head>
 <body>
-    <?php include BASE_PATH . '/../components/sidebar-stud.php'; ?>
-    <?php include BASE_PATH . '/../components/top-bar.php'; ?>
+    <?php include __DIR__ . '/../../../../components/sidebar-stud.php'; ?>
+    <?php include __DIR__ . '/../../../../components/top-bar.php'; ?>
         
     <div class="main-container">
         <div class="grades-header">
@@ -341,15 +475,26 @@ $overall_gpa = round($total_percentage / count($all_grades), 1);
                 <?php if (count($grades) > 0): ?>
                     <?php foreach ($grades as $grade): ?>
                         <div class="grade-item">
-                            <div class="grade-info">
-                                <div class="grade-name"><?php echo htmlspecialchars($grade['module_name']); ?></div>
-                            </div>
-                            <div class="grade-badge">
-                                <div class="grade-mark grade-<?php echo strtolower(str_replace(['+', '-'], '', $grade['grade'])); ?>">
-                                    <?php echo htmlspecialchars($grade['grade']); ?>
+                            <div class="grade-header-row">
+                                <div class="grade-info">
+                                    <div class="grade-name"><?php echo htmlspecialchars($grade['module_name']); ?></div>
+                                    <?php if (!empty($grade['created_at'])): ?>
+                                        <div class="grade-date">Graded: <?php echo date('M d, Y', strtotime($grade['created_at'])); ?></div>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="grade-percentage"><?php echo htmlspecialchars($grade['percentage']); ?>%</div>
+                                <div class="grade-badge">
+                                    <div class="grade-mark grade-<?php echo strtolower(str_replace(['+', '-'], '', $grade['grade'])); ?>">
+                                        <?php echo htmlspecialchars($grade['grade']); ?>
+                                    </div>
+                                    <div class="grade-percentage"><?php echo htmlspecialchars($grade['percentage']); ?>%</div>
+                                </div>
                             </div>
+                            <?php if (!empty($grade['feedback'])): ?>
+                                <div class="grade-feedback">
+                                    <div class="feedback-label">Teacher Feedback</div>
+                                    <div class="feedback-text"><?php echo htmlspecialchars($grade['feedback']); ?></div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -362,15 +507,26 @@ $overall_gpa = round($total_percentage / count($all_grades), 1);
                 <?php if (count($assignment_grades) > 0): ?>
                     <?php foreach ($assignment_grades as $grade): ?>
                         <div class="grade-item">
-                            <div class="grade-info">
-                                <div class="grade-name"><?php echo htmlspecialchars($grade['assignment_name']); ?></div>
-                            </div>
-                            <div class="grade-badge">
-                                <div class="grade-mark grade-<?php echo strtolower(str_replace(['+', '-'], '', $grade['grade'])); ?>">
-                                    <?php echo htmlspecialchars($grade['grade']); ?>
+                            <div class="grade-header-row">
+                                <div class="grade-info">
+                                    <div class="grade-name"><?php echo htmlspecialchars($grade['assignment_name']); ?></div>
+                                    <?php if (!empty($grade['graded_at'])): ?>
+                                        <div class="grade-date">Graded: <?php echo date('M d, Y', strtotime($grade['graded_at'])); ?></div>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="grade-percentage"><?php echo htmlspecialchars($grade['percentage']); ?>%</div>
+                                <div class="grade-badge">
+                                    <div class="grade-mark grade-<?php echo strtolower(str_replace(['+', '-'], '', $grade['grade'])); ?>">
+                                        <?php echo htmlspecialchars($grade['grade']); ?>
+                                    </div>
+                                    <div class="grade-percentage"><?php echo htmlspecialchars($grade['percentage']); ?>%</div>
+                                </div>
                             </div>
+                            <?php if (!empty($grade['feedback'])): ?>
+                                <div class="grade-feedback">
+                                    <div class="feedback-label">Teacher Feedback</div>
+                                    <div class="feedback-text"><?php echo htmlspecialchars($grade['feedback']); ?></div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>

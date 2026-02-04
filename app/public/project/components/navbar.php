@@ -12,7 +12,7 @@
         <div class="header-container">
             <div class="logo-section">
                 <a href="../landing/index.php" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
-                    <img src="../img/nyu-logo.png" alt="NYU Logo" class="logo-icon">
+                    <img src="../assets/nyu-logo.png" alt="NYU Logo" class="logo-icon">
                     <span class="logo-text">NEW YORK UNIVERSITY</span>
                 </a>
             </div>

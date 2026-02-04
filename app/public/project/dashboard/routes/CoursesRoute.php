@@ -50,12 +50,36 @@ return [
         ['AuthMiddleware', 'RoleMiddleware:teacher']
     ],
 
+    // Teacher show
+    ['GET', '/project/teacher/dashboard/cources/show',
+        [CourseController::class, 'teacherShow'],
+        ['AuthMiddleware', 'RoleMiddleware:teacher']
+    ],
+
+    // Teacher add content
+    ['POST', '/project/teacher/dashboard/cources/add-content',
+        [CourseController::class, 'addContent'],
+        ['AuthMiddleware', 'RoleMiddleware:teacher']
+    ],
+
+    // Teacher delete content
+    ['GET', '/project/teacher/dashboard/cources/delete-content',
+        [CourseController::class, 'deleteContent'],
+        ['AuthMiddleware', 'RoleMiddleware:teacher']
+    ],
+
 
     //StudentCources
 
     // Student courses list (index)
     ['GET', '/project/student/dashboard/courses',
         [CourseController::class, 'studentIndex'],
+        ['AuthMiddleware', 'RoleMiddleware:student']
+    ],
+
+    // Student join course
+    ['POST', '/project/student/dashboard/courses/join',
+        [CourseController::class, 'enroll'],
         ['AuthMiddleware', 'RoleMiddleware:student']
     ],
 

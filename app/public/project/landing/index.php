@@ -21,7 +21,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                 <div class="hero-overlay">
                     <h1 class="hero-text">New York</h1>
                 </div>
-                <img src="../img/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="NYU Campus" class="hero-bg">
+                <img src="../assets/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="NYU Campus" class="hero-bg">
             </div>
             <div class="promo-banner">
                 <div class="promo-content">

@@ -13,7 +13,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a href="<?= BASE_URL ?>/project/student/dashboard/courses" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/student/dashboard" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="7" height="7"></rect>
                 <rect x="14" y="3" width="7" height="7"></rect>
@@ -60,13 +60,6 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
             <span>Students</span>
-        </a>
-        <a href="<?= BASE_URL ?>/project/student/settings" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M12 1v6m0 6v6m-7.07-7.07l4.24 4.24m2.83 0l4.24 4.24M1 12h6m6 0h6m-7.07 7.07l4.24-4.24m2.83-2.83l4.24-4.24"></path>
-            </svg>
-            <span>Settings</span>
         </a>
         <a href="<?= BASE_URL ?>/project/auth/logout.php" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

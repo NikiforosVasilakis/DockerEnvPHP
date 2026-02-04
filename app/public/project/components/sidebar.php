@@ -61,14 +61,7 @@
             </svg>
             <span>Students</span>
         </a>
-        <a href="<?= BASE_URL ?>/project/teacher/dashboard/settings" class="sidebar-link">
-            <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M12 1v6m0 6v6m-7.07-7.07l4.24 4.24m2.83 0l4.24 4.24M1 12h6m6 0h6m-7.07 7.07l4.24-4.24m2.83-2.83l4.24-4.24"></path>
-            </svg>
-            <span>Settings</span>
-        </a>
-        <a href="<?= BASE_URL ?>/z/auth/logout.php" class="sidebar-link">
+        <a href="<?= BASE_URL ?>/project/auth/logout.php" class="sidebar-link">
             <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M10 17l5-5-5-5"></path>
                 <path d="M15 12H3"></path>

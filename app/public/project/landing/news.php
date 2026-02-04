@@ -23,7 +23,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 		<!-- Page header -->
 		<section class="page-header">
 			<div class="page-header-bg">
-				<img src="../img/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="News header" class="page-header-img">
+				<img src="../assets/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="News header" class="page-header-img">
 				<div class="page-header-overlay">
 					<h1>News</h1>
 					<p>Latest updates and stories from the university community</p>
@@ -39,7 +39,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 				<!-- Top: image on the RIGHT, text on the LEFT -->
 				<article class="news-item reverse">
 					<div class="news-image">
-						<img src="../img/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="Campus research lab">
+						<img src="../assets/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="Campus research lab">
 					</div>
 					<div class="news-content">
 						<div class="meta">Oct 15, 2025 &middot; Research</div>
@@ -52,7 +52,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 				<!-- Second: image left, text right -->
 				<article class="news-item">
 					<div class="news-image">
-						<img src="../img/nyu-logo.png" alt="Student event">
+						<img src="../assets/nyu-logo.png" alt="Student event">
 					</div>
 					<div class="news-content">
 						<div class="meta">Nov 02, 2025 &middot; Campus Life</div>
@@ -65,7 +65,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 				<!-- Third: image on the right, text left -->
 				<article class="news-item reverse">
 					<div class="news-image">
-						<img src="../img/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="Graduation ceremony">
+						<img src="../assets/51e4ddfa-2491-4cff-9d0e-115b39ebb8a5.png" alt="Graduation ceremony">
 					</div>
 					<div class="news-content">
 						<div class="meta">Dec 01, 2025 &middot; Events</div>

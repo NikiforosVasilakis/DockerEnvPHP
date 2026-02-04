@@ -1,178 +1,465 @@
 <?php
-// Middleware handles authentication & role check
-// $_SESSION['user'] is populated by login system
+$errors = $_SESSION['errors'] ?? [];
+$success = $_SESSION['success'] ?? null;
+$old = $_SESSION['old'] ?? [];
 
-include_once __DIR__ . '/../../../../auth/connect.php';
+// Ensure courses variable exists
+$courses = $courses ?? [];
 
-$error_message = '';
-$success_message = '';
-
-$teacher_id = (int)$_SESSION['user']['id'];
-
-// Fetch teacher courses for selection
-$courses = [];
-{
-	$course_sql = "SELECT id, title FROM courses WHERE teacher_id = ? ORDER BY title";
-	$course_stmt = $conn->prepare($course_sql);
-	$course_stmt->bind_param('i', $teacher_id);
-	$course_stmt->execute();
-	$course_res = $course_stmt->get_result();
-	while ($row = $course_res->fetch_assoc()) {
-		$courses[] = $row;
-	}
-	$course_stmt->close();
-}
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($error_message)) {
-	$course_id = isset($_POST['course_id']) ? (int)$_POST['course_id'] : 0;
-	$title = isset($_POST['title']) ? trim($_POST['title']) : '';
-	$description = isset($_POST['description']) ? trim($_POST['description']) : '';
-	$max_points = isset($_POST['max_points']) ? (float)$_POST['max_points'] : 100.0;
-	$due_at = isset($_POST['due_at']) ? trim($_POST['due_at']) : '';
-	$allow_late = isset($_POST['allow_late']) ? 1 : 0;
-	$attachment_path = null;
-
-	if (empty($course_id) || empty($title)) {
-		$error_message = 'Please select a course and provide a title.';
-	} else {
-		// Handle file upload if provided
-		if (!empty($_FILES['attachment']['name'])) {
-			$uploadDir = __DIR__ . '/../../../../assets/assignments';
-			if (!is_dir($uploadDir)) {
-				@mkdir($uploadDir, 0775, true);
-			}
-			$originalName = basename($_FILES['attachment']['name']);
-			$safeName = uniqid('asg_', true) . '_' . preg_replace('/[^a-zA-Z0-9\._-]/', '_', $originalName);
-			$targetPath = $uploadDir . '/' . $safeName;
-			if (move_uploaded_file($_FILES['attachment']['tmp_name'], $targetPath)) {
-				// Store web-accessible relative path
-				$attachment_path = '/app/public/project/assets/assignments/' . $safeName;
-			} else {
-				$error_message = 'Failed to upload file. Please try again.';
-			}
-		}
-
-		if (empty($error_message)) {
-			$insert_sql = "INSERT INTO assignments (course_id, title, description, attachment_path, max_points, due_at, allow_late, created_at)
-						   VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
-			$stmt = $conn->prepare($insert_sql);
-			$stmt->bind_param(
-				'isssdsi',
-				$course_id,
-				$title,
-				$description,
-				$attachment_path,
-				$max_points,
-				$due_at,
-				$allow_late
-			);
-			if ($stmt->execute()) {
-				$success_message = 'Assignment created successfully! Redirecting...';
-				header('Refresh: 2; url=' . BASE_URL . '/project/teacher/dashboard/assignments');
-			} else {
-				$error_message = 'Error creating assignment: ' . $conn->error;
-			}
-			$stmt->close();
-		}
-	}
-}
-
+unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Create Assignment</title>
-	<link rel="stylesheet" href="../../../css/styles.css">
-	<style>
-		body { margin: 0; padding: 0; background: #f5f5f5; }
-		.main-wrapper { display: flex; min-height: 100vh; background: #f5f5f5; }
-		.main-content { margin-left: 240px; margin-top: 70px; flex: 1; padding: 2rem; background: #f5f5f5; }
-		.create-form-container { background: white; border-radius: 18px; padding: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); max-width: 700px; margin: 0 auto; }
-		.form-title { font-size: 2rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1.5rem; }
-		.form-group { margin-bottom: 1.25rem; display: flex; flex-direction: column; }
-		.form-label { font-size: 1rem; font-weight: 600; color: #2c3e50; margin-bottom: 0.5rem; }
-		.form-input, .form-textarea, .form-select { padding: 0.875rem 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; transition: all 0.2s ease; }
-		.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: #5B5FFF; box-shadow: 0 0 0 3px rgba(91,95,255,0.1); }
-		.form-textarea { resize: vertical; min-height: 120px; }
-		.form-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
-		.form-btn { padding: 0.875rem 2rem; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-		.btn-submit { background: #5B5FFF; color: white; box-shadow: 0 2px 8px rgba(91,95,255,0.3); }
-		.btn-submit:hover { background: #4a4ecc; box-shadow: 0 4px 12px rgba(91,95,255,0.4); transform: translateY(-2px); }
-		.btn-cancel { background: #e5e7eb; color: #374151; }
-		.btn-cancel:hover { background: #d1d5db; }
-		.alert { padding: 1rem; border-radius: 10px; margin-bottom: 1rem; font-weight: 500; }
-		.alert-error { background: #fee2e2; color: #991b1b; border: 2px solid #fca5a5; }
-		.alert-success { background: #dcfce7; color: #166534; border: 2px solid #86efac; }
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher - Create Assignment</title>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .main-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        }
+
+        .main-content {
+            margin-left: 240px;
+            margin-top: 70px;
+            flex: 1;
+            padding: 1.5rem;
+            background: transparent;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-content h1 {
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .header-content p {
+            color: #718096;
+            font-size: 0.9rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+            gap: 0.75rem;
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-error {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            border-left: 4px solid #ff5252;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border-left: 4px solid #43e97b;
+        }
+
+        .alert ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .alert li {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+            max-width: 700px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label .required {
+            color: #ff6b6b;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: #718096;
+            margin-top: 0.4rem;
+            font-weight: 500;
+        }
+
+        .form-group-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+            transform: translateY(-2px);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 180px;
+                padding: 1rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .form-group-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .header-content h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-	<div class="main-wrapper">
-		<?php include_once __DIR__ . '/../../../../components/sidebar.php'; ?>
-		<div style="flex: 1;">
-			<?php include_once __DIR__ . '/../../../../components/top-bar.php'; ?>
-			<div class="main-content">
-				<div class="create-form-container">
-					<h1 class="form-title">Create Assignment</h1>
+    <div class="main-wrapper">
+        <?php include_once __DIR__ . '/../../../../components/sidebar.php'; ?>
+        <div style="flex: 1;">
+            <?php include_once __DIR__ . '/../../../../components/top-bar.php'; ?>
+            <div class="main-content">
+                <a href="<?php echo BASE_URL; ?>/project/teacher/dashboard/assignments" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Assignments
+                </a>
 
-					<?php if (!empty($error_message)): ?>
-						<div class="alert alert-error"><?php echo htmlspecialchars($error_message); ?></div>
-					<?php endif; ?>
-					<?php if (!empty($success_message)): ?>
-						<div class="alert alert-success"><?php echo htmlspecialchars($success_message); ?></div>
-					<?php endif; ?>
+                <div class="page-header">
+                    <div class="header-content">
+                        <h1>Create New Assignment</h1>
+                        <p>Add a new assignment to your course</p>
+                    </div>
+                </div>
 
-					<form method="POST" action="<?php echo BASE_URL; ?>/project/teacher/dashboard/assignments" enctype="multipart/form-data">
-						<div class="form-group">
-							<label class="form-label">Course <span style="color:#ef4444">*</span></label>
-							<select name="course_id" class="form-select" required>
-								<option value="">Select course</option>
-								<?php foreach ($courses as $c): ?>
-									<option value="<?php echo (int)$c['id']; ?>"><?php echo htmlspecialchars($c['title']); ?></option>
-								<?php endforeach; ?>
-							</select>
-						</div>
+                <?php if ($success): ?>
+                    <div class="alert alert-success">
+                        <strong>Success!</strong> Assignment created successfully. Redirecting...
+                    </div>
+                <?php elseif (!empty($errors)): ?>
+                    <div class="alert alert-error">
+                        <strong>Please fix the following errors:</strong>
+                        <ul>
+                            <?php foreach ($errors as $error): ?>
+                                <li><?php echo htmlspecialchars($error); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
 
-						<div class="form-group">
-							<label class="form-label">Title <span style="color:#ef4444">*</span></label>
-							<input type="text" name="title" class="form-input" placeholder="Assignment title" required />
-						</div>
+                <form method="POST" action="<?php echo BASE_URL; ?>/project/teacher/dashboard/assignments" class="form-container">
+                    <div class="form-group">
+                        <label for="title">
+                            Assignment Title <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            name="title" 
+                            placeholder="e.g., HTML & CSS Basics"
+                            value="<?php echo htmlspecialchars($old['title'] ?? ''); ?>"
+                            required
+                        >
+                        <div class="form-hint">Give your assignment a clear, descriptive title (3-100 characters)</div>
+                    </div>
 
-						<div class="form-group">
-							<label class="form-label">Description</label>
-							<textarea name="description" class="form-textarea" placeholder="Brief description of the assignment"></textarea>
-						</div>
+                    <div class="form-group">
+                        <label for="course_id">
+                            Select Course <span class="required">*</span>
+                        </label>
+                        <select id="course_id" name="course_id" required>
+                            <option value="">Choose a course...</option>
+                            <?php foreach ($courses as $course): ?>
+                                <option value="<?php echo $course['id']; ?>" <?php echo (!empty($old['course_id']) && $old['course_id'] == $course['id']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($course['title']); ?> (<?php echo $course['code']; ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="form-hint">Select the course this assignment belongs to</div>
+                    </div>
 
-						<div class="form-group">
-							<label class="form-label">Attachment (optional)</label>
-							<input type="file" name="attachment" class="form-input" />
-						</div>
+                    <div class="form-group">
+                        <label for="description">
+                            Description <span class="required">*</span>
+                        </label>
+                        <textarea 
+                            id="description" 
+                            name="description" 
+                            placeholder="Describe the assignment requirements, objectives, and any additional instructions for students..."
+                            required
+                        ><?php echo htmlspecialchars($old['description'] ?? ''); ?></textarea>
+                        <div class="form-hint">Provide clear instructions and expectations for students (minimum 10 characters)</div>
+                    </div>
 
-						<div class="form-group">
-							<label class="form-label">Max Points</label>
-							<input type="number" step="0.01" name="max_points" class="form-input" value="100" />
-						</div>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="max_points">
+                                Max Points <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="max_points" 
+                                name="max_points" 
+                                placeholder="e.g., 100"
+                                min="1"
+                                step="1"
+                                value="<?php echo htmlspecialchars($old['max_points'] ?? '100'); ?>"
+                                required
+                            >
+                            <div class="form-hint">Total points for this assignment</div>
+                        </div>
 
-						<div class="form-group">
-							<label class="form-label">Due Date</label>
-							<input type="datetime-local" name="due_at" class="form-input" />
-						</div>
+                        <div class="form-group">
+                            <label for="due_at">
+                                Due Date <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="datetime-local" 
+                                id="due_at" 
+                                name="due_at"
+                                value="<?php echo htmlspecialchars($old['due_at'] ?? ''); ?>"
+                                required
+                            >
+                            <div class="form-hint">When should students submit this?</div>
+                        </div>
+                    </div>
 
-						<div class="form-group">
-							<label class="form-label">Allow Late Submission</label>
-							<input type="checkbox" name="allow_late" />
-						</div>
+                    <div class="form-group">
+                        <label>Options</label>
+                        <div class="checkbox-group">
+                            <input 
+                                type="checkbox" 
+                                id="allow_late" 
+                                name="allow_late"
+                                <?php echo (!empty($old['allow_late'])) ? 'checked' : ''; ?>
+                            >
+                            <label for="allow_late">Allow late submissions</label>
+                        </div>
+                        <div class="form-hint">Check this if students can submit after the due date (may apply grade penalties)</div>
+                    </div>
 
-						<div class="form-actions">
-							<button type="submit" class="form-btn btn-submit">Create Assignment</button>
-							<a href="<?php echo BASE_URL; ?>/project/teacher/dashboard/assignments" class="form-btn btn-cancel" style="text-decoration:none;display:inline-block;text-align:center;">Cancel</a>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Create Assignment
+                        </button>
+                        <a href="<?php echo BASE_URL; ?>/project/teacher/dashboard/assignments" class="btn btn-secondary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

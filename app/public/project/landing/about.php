@@ -26,7 +26,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 			</div>
 
 			<div class="hero-media">
-				<img src="../img/nyu-camp.jpg" alt="NYU campus" class="hero-img">
+				<img src="../assets/nyu-camp.jpg" alt="NYU campus" class="hero-img">
 			</div>
 		</div>
 
@@ -40,7 +40,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 	<!-- Profile / Mission -->
 	<section class="profile-row">
 		<div class="profile-card">
-			<img src="../img/president.jpg" alt="President">
+			<img src="../assets/president.jpg" alt="President">
 			<h3>University President</h3>
 			<p class="role">Leadership & Vision</p>
 			<p>Committed to academic excellence, interdisciplinary research, and global engagement.</p>

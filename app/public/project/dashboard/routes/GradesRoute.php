@@ -23,6 +23,11 @@ return [
         ['AuthMiddleware', 'RoleMiddleware:teacher']
     ],
 
+    ['GET', '/project/teacher/dashboard/grades/add',
+        [GradeController::class, 'addForm'],
+        ['AuthMiddleware', 'RoleMiddleware:teacher']
+    ],
+
     ['POST', '/project/teacher/dashboard/grades',
         [GradeController::class, 'store'],
         ['AuthMiddleware', 'RoleMiddleware:teacher']

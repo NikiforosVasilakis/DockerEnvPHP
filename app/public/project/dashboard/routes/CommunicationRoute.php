@@ -14,9 +14,25 @@ return [
         abort(403);
 
     }, ['AuthMiddleware']],
+ 
+    // Friendly aliases for role-based communication landing pages
+    ['GET', '/project/student/dashboard/communication',
+        [CommunicationController::class, 'studentCommunication_S'],
+        ['AuthMiddleware', 'RoleMiddleware:student']
+    ],
+    ['GET', '/project/teacher/dashboard/communication',
+        [CommunicationController::class, 'studentCommunication_T'],
+        ['AuthMiddleware', 'RoleMiddleware:teacher']
+    ],
 
     ['GET', '/project/teacher/dashboard/TeacherCommunication',
         [CommunicationController::class, 'teacherCommunication_T'],
+        ['AuthMiddleware', 'RoleMiddleware:teacher']
+    ],
+
+    // Explicit student communication alias for teacher dashboard
+    ['GET', '/project/teacher/dashboard/communication/student',
+        [CommunicationController::class, 'studentCommunication_T'],
         ['AuthMiddleware', 'RoleMiddleware:teacher']
     ],
     ['GET', '/project/teacher/dashboard/StudentCommunication',

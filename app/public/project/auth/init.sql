@@ -190,3 +190,31 @@ CREATE TABLE grades (
     INDEX idx_grade_teacher (graded_by),
     INDEX idx_grade_graded_at (graded_at)
 ) ENGINE=InnoDB;
+
+-- =========================
+-- Final Grades (UI form)
+-- =========================
+
+-- Lightweight table for overall/final grades captured via the dashboard form.
+-- Keeps UI aligned without requiring an assignment submission reference.
+CREATE TABLE final_grades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    course VARCHAR(200) NOT NULL,
+    letter_grade VARCHAR(5) NOT NULL,
+    percentage DECIMAL(5,2) NOT NULL,
+    feedback TEXT NULL,
+    graded_by INT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_final_grade_student
+        FOREIGN KEY (student_id) REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_final_grade_teacher
+        FOREIGN KEY (graded_by) REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    UNIQUE KEY uq_student_course (student_id, course),
+    INDEX idx_final_grade_teacher (graded_by)
+) ENGINE=InnoDB;

@@ -42,24 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		";
 
 		if ($conn->query($sql)) {
-			$new_user_id = $conn->insert_id;
 			if (isset($code['id'])) {
 				// Mark registration code as used
 				$conn->query("UPDATE registration_codes SET used = 1 WHERE id = {$code['id']}");
 			}
 
-			// Fetch the newly created user and merge role name
-			$u_sql = "SELECT u.*, r.role_name FROM users u LEFT JOIN user_roles r ON u.role_id = r.id WHERE u.id = $new_user_id LIMIT 1";
-			$u_res = $conn->query($u_sql);
-			if ($u_res && $u_res->num_rows === 1) {
-				$new_user = $u_res->fetch_assoc();
-				$_SESSION['user'] = $new_user;
-				$_SESSION['just_logged_in'] = true;
-				header('Location: /project/dashboard/dashboard.php');
-				exit;
-			}
-
-			$message = "Registration successful! You may now login.";
+			// Redirect to login with success message
+			$_SESSION['success'] = "Registration successful! Please log in.";
+			header('Location: /project/auth/login.php');
+			exit;
 		} else {
 			$message = "Error: " . $conn->error;
 		}
